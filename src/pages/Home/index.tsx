@@ -1,10 +1,22 @@
+// COMPONENTS
+import { DescriptionDisplay } from './components/DescriptionDisplay'
+import { ProductsShelf } from './components/ProductsShelf'
+
+// STYLE
 import { HomeContainer } from './styles'
+
+// ICONS, IMAGES
+import backgroundVector from '../../assets/svg/background-vectors.svg'
 
 export function Home() {
   return (
     <HomeContainer>
-      <h1>Home</h1>
-      <img src="/images/arabe.png" alt="" />
+      <img src={backgroundVector} alt="" />
+
+      <DescriptionDisplay />
+
+      <ProductsShelf />
+      {/* <img src="/images/arabe.png" alt="" /> */}
     </HomeContainer>
   )
 }

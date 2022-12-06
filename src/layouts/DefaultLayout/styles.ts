@@ -5,7 +5,7 @@ export const LayoutContainer = styled.div`
   height: calc(100vh);
   margin: 0 auto;
 
-  background-color: ${(props) => props.theme['gray-500']};
+  background-color: ${(props) => props.theme['gray-150']};
 
   display: flex;
   flex-direction: column;

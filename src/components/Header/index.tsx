@@ -11,7 +11,7 @@ import { ShoppingCart, MapPin } from 'phosphor-react'
 export function Header() {
   return (
     <HeaderContainer>
-      <NavLink to="/" title="Cart">
+      <NavLink to="/" title="Home">
         <img src={logoCoffee} alt="" />
       </NavLink>
 

@@ -33,6 +33,10 @@ export const HeaderContainer = styled.nav`
 
       color: ${(props) => props.theme['purple-300']};
       background: ${(props) => props.theme['purple-100']};
+
+      p {
+        color: ${(props) => props.theme['purple-500']};
+      }
     }
 
     a {
