@@ -2,12 +2,19 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.nav`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 6.5rem;
 
   padding: 2rem 10rem;
+
+  background-color: ${(props) => props.theme['gray-150']};
 
   a {
     display: flex;

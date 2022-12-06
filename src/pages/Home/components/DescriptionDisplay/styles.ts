@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const DescriptionContainer = styled.div`
+  position: relative;
+  z-index: 10;
   display: flex;
   padding: 0 10rem;
 
@@ -18,7 +20,7 @@ export const DescriptionContainer = styled.div`
     list-style-type: none;
     display: grid;
     grid-template-columns: auto auto;
-    column-gap: 2.5rem;
+    column-gap: 2.3rem;
     row-gap: 1.25rem;
 
     padding-right: 4.8125rem;
