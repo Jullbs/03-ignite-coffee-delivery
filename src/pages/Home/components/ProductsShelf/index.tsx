@@ -1,8 +1,11 @@
 // LIBS, HOOKS, ETC
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { api } from '../../../../services/api'
 
 import { formatPrice } from '../../../../util/format'
+
+// COMPONENT
+import { CartContext } from '../../../../contexts/CartContext'
 
 // STYLE
 import {
@@ -14,7 +17,7 @@ import {
 // ICONS, IMAGES
 import { ShoppingCart, Plus, Minus } from 'phosphor-react'
 
-interface Product {
+export interface Product {
   id: number
   name: string
   tags: string[]
@@ -25,6 +28,12 @@ interface Product {
 
 export function ProductsShelf() {
   const [products, setProducts] = useState<Product[]>([])
+
+  const { addProductToCart } = useContext(CartContext)
+
+  function handleAddProductToCart(productId: number) {
+    addProductToCart(productId)
+  }
 
   useEffect(() => {
     async function loadProducts() {
@@ -60,7 +69,9 @@ export function ProductsShelf() {
                     <Plus size="14" weight="bold" />
                   </button>
                 </div>
-                <ShoppingCart size="38" weight="fill" />
+                <button onClick={() => handleAddProductToCart(product.id)}>
+                  <ShoppingCart size="38" weight="fill" />
+                </button>
               </ShoppingButtons>
             </li>
           )

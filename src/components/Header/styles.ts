@@ -16,18 +16,18 @@ export const HeaderContainer = styled.nav`
 
   background-color: ${(props) => props.theme['gray-150']};
 
-  a {
+  > a {
     display: flex;
     align-items: center;
   }
 
-  div {
+  > div {
     display: flex;
     height: 2.375rem;
 
     gap: 0.75rem;
 
-    span {
+    > span {
       display: flex;
       align-items: center;
 
@@ -41,12 +41,12 @@ export const HeaderContainer = styled.nav`
       color: ${(props) => props.theme['purple-300']};
       background: ${(props) => props.theme['purple-100']};
 
-      p {
+      > p {
         color: ${(props) => props.theme['purple-500']};
       }
     }
 
-    a {
+    > a {
       padding: 0.5rem;
       border-radius: 0.375rem;
 

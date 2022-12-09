@@ -3,11 +3,11 @@ import styled from 'styled-components'
 export const ProductsShelfContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3.375rem;
-  padding: 0 10rem;
+  gap: 3.175rem;
+  margin: 0 10rem;
 
   h1 {
-    padding-top: 1.75rem;
+    margin-top: 1.75rem;
 
     font-family: 'Baloo 2', cursive;
     font-weight: 800;
@@ -16,13 +16,12 @@ export const ProductsShelfContainer = styled.div`
 `
 
 export const ItemContainer = styled.ul`
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  column-gap: 2rem;
-  row-gap: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
 
   li {
+    max-width: 16rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,9 +32,9 @@ export const ItemContainer = styled.ul`
 
     > img {
       height: 7.5rem;
+      width: auto;
 
-      padding: 0 4.25rem 0.75rem 4.25rem;
-      margin-top: -1.25rem;
+      margin: -1.25rem 4.25rem 0.75rem 4.25rem;
     }
 
     > span {
@@ -56,8 +55,8 @@ export const ItemContainer = styled.ul`
     }
 
     > h2 {
-      padding-top: 1.125rem;
-      padding-bottom: 0.5rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.5rem;
 
       font-family: 'Baloo 2', cursive;
       font-size: 1.25rem;
@@ -65,7 +64,7 @@ export const ItemContainer = styled.ul`
     }
 
     > p {
-      padding: 0 1.25rem;
+      margin: 0 1.25rem;
 
       font-family: 'Roboto', sans-serif;
       font-size: 0.875rem;
@@ -79,7 +78,7 @@ export const ShoppingButtons = styled.div`
   justify-content: center;
   align-items: center;
 
-  padding: 2.0625rem 1.5rem 1.25rem 1.5rem;
+  margin: 2.0625rem 1.5rem 1.25rem 1.5rem;
 
   > p {
     margin-right: 1.4375rem;
@@ -116,11 +115,24 @@ export const ShoppingButtons = styled.div`
     }
   }
 
-  > svg {
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+  > button {
+    all: unset;
+    display: flex;
+    justify-content: center;
 
-    color: ${(props) => props.theme.white};
-    background: ${(props) => props.theme['purple-500']};
+    > svg {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+
+      color: ${(props) => props.theme.white};
+      background: ${(props) => props.theme['purple-500']};
+
+      transition: background-color 0.4s;
+
+      :hover {
+        cursor: pointer;
+        background: ${(props) => props.theme['purple-300']};
+      }
+    }
   }
 `

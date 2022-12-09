@@ -4,6 +4,7 @@ export const DescriptionContainer = styled.div`
   position: relative;
   z-index: 10;
   display: flex;
+  flex-wrap: wrap;
   padding: 0 10rem;
 
   font-family: 'Roboto', sans-serif;
@@ -11,6 +12,8 @@ export const DescriptionContainer = styled.div`
   section {
     display: flex;
     flex-direction: column;
+    max-width: 40.25rem;
+
     gap: 4.125rem;
     padding-top: 5.875rem;
     padding-bottom: 6.75rem;
@@ -66,6 +69,8 @@ export const DescriptionContainer = styled.div`
 
   img {
     padding: 5.75rem 0;
+    max-width: 100%;
+    height: auto;
   }
 `
 
