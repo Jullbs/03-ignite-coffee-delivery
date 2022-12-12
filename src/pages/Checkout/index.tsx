@@ -7,23 +7,20 @@ import { CheckoutContainer } from './styles'
 
 export function Checkout() {
   const newCheckoutForm = useForm()
-  const { handleSubmit } = newCheckoutForm
-
-  const onSubmit = (data) => console.log(data)
 
   return (
     <CheckoutContainer>
-      <form onSubmit={handleSubmit(onSubmit)} action="">
-        <div>
-          <p>Complete seu pedido</p>
-          <FormProvider {...newCheckoutForm}>
+      <form action="">
+        <FormProvider {...newCheckoutForm}>
+          <div>
+            <p>Complete seu pedido</p>
             <CheckoutForm />
-          </FormProvider>
-        </div>
-        <div>
-          <p>Cafés selecionados</p>
-          <Cart />
-        </div>
+          </div>
+          <div>
+            <p>Cafés selecionados</p>
+            <Cart />
+          </div>
+        </FormProvider>
       </form>
     </CheckoutContainer>
   )

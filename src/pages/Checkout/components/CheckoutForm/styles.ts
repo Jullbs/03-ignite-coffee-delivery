@@ -13,7 +13,7 @@ export const CheckoutFormContainer = styled.div`
   }
 `
 const BaseDiv = styled.div`
-  background-color: ${(props) => props.theme['gray-200']};
+  background: ${(props) => props.theme['gray-200']};
   padding: 2.5rem;
   border-radius: 6px;
 

@@ -21,7 +21,25 @@ export function cartReducer(state: CartState, action: any) {
   switch (action.type) {
     case ActionTypes.ADD_CART_PRODUCT:
       return produce(state, (draft) => {
-        draft.cart.push(action.payload.product)
+        draft.cart.push({ ...action.payload.product, amount: 1 })
+      })
+
+    case ActionTypes.UPDATE_CART_PRODUCT_AMOUNT:
+      return produce(state, (draft) => {
+        draft.cart = draft.cart.map((product) => {
+          if (product.id === action.payload.id) {
+            return { ...product, amount: action.payload.amount }
+          } else {
+            return product
+          }
+        })
+      })
+
+    case ActionTypes.REMOVE_CART_PRODUCT:
+      return produce(state, (draft) => {
+        draft.cart = draft.cart.filter(
+          (product) => product.id !== action.payload.id,
+        )
       })
     default:
       return state

@@ -52,6 +52,24 @@ export const HeaderContainer = styled.nav`
 
       color: ${(props) => props.theme['yellow-500']};
       background: ${(props) => props.theme['yellow-100']};
+
+      > p {
+        position: absolute;
+        text-align: center;
+        margin-left: 1.2rem;
+        margin-top: -0.9rem;
+
+        line-height: 1.25rem;
+        width: 1.25rem;
+        border-radius: 1rem;
+
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+
+        color: ${(props) => props.theme.white};
+        background: ${(props) => props.theme['yellow-500']};
+      }
     }
   }
 `

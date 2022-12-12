@@ -112,6 +112,11 @@ export const ShoppingButtons = styled.div`
 
       font-family: 'Roboto', sans-serif;
       color: ${(props) => props.theme['purple-300']};
+
+      :hover {
+        cursor: pointer;
+        color: ${(props) => props.theme['purple-500']};
+      }
     }
   }
 

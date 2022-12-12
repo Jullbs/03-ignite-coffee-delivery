@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { CartProduct } from './reducer'
 
 export enum ActionTypes {
-  // eslint-disable-next-line no-unused-vars
   ADD_CART_PRODUCT = 'ADD_CART_PRODUCT',
+  UPDATE_CART_PRODUCT_AMOUNT = 'UPDATE_CART_PRODUCT_AMOUNT',
+  REMOVE_CART_PRODUCT = 'REMOVE_CART_PRODUCT',
 }
 
 export function addCartProductAction(product: CartProduct) {
@@ -10,6 +12,25 @@ export function addCartProductAction(product: CartProduct) {
     type: ActionTypes.ADD_CART_PRODUCT,
     payload: {
       product,
+    },
+  }
+}
+
+export function updateCartProductAmountAction(id: number, amount: number) {
+  return {
+    type: ActionTypes.UPDATE_CART_PRODUCT_AMOUNT,
+    payload: {
+      id,
+      amount,
+    },
+  }
+}
+
+export function removeCartProductAction(id: number) {
+  return {
+    type: ActionTypes.REMOVE_CART_PRODUCT,
+    payload: {
+      id,
     },
   }
 }

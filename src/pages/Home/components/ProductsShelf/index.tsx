@@ -31,7 +31,7 @@ export function ProductsShelf() {
 
   const { addProductToCart } = useContext(CartContext)
 
-  function handleAddProductToCart(productId: number) {
+  async function handleAddProductToCart(productId: number) {
     addProductToCart(productId)
   }
 
@@ -61,15 +61,18 @@ export function ProductsShelf() {
               <ShoppingButtons>
                 <p>{formatPrice(product.price)}</p>
                 <div>
-                  <button>
+                  <button type="button">
                     <Minus size="14" weight="bold" />
                   </button>
                   <p>1</p>
-                  <button>
+                  <button type="button">
                     <Plus size="14" weight="bold" />
                   </button>
                 </div>
-                <button onClick={() => handleAddProductToCart(product.id)}>
+                <button
+                  type="button"
+                  onClick={() => handleAddProductToCart(product.id)}
+                >
                   <ShoppingCart size="38" weight="fill" />
                 </button>
               </ShoppingButtons>

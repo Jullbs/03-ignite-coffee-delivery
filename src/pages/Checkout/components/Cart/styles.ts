@@ -98,9 +98,15 @@ export const ShoppingButtons = styled.div`
       background: ${(props) => props.theme['gray-500']};
     }
 
-    > p {
-      font-size: 0.75rem;
-      color: ${(props) => props.theme['gray-900']};
+    > button {
+      display: flex;
+      gap: 0.25rem;
+
+      > label {
+        font-size: 0.75rem;
+        color: ${(props) => props.theme['gray-900']};
+        cursor: pointer;
+      }
     }
   }
 `

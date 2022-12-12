@@ -1,15 +1,22 @@
 // LIBS, HOOKS, ETC
 import { createContext, ReactNode, useReducer } from 'react'
 import { api } from '../services/api'
+import { toast } from 'react-toastify'
 
 // COMPONENT
 import { CartProduct, cartReducer } from '../reducers/cart/reducer'
-import { addCartProductAction } from '../reducers/cart/actions'
+import {
+  addCartProductAction,
+  removeCartProductAction,
+  updateCartProductAmountAction,
+} from '../reducers/cart/actions'
 
 // MAIN CODE
 interface CartContextType {
   cart: CartProduct[]
-  addProductToCart: (id: number) => void
+  addProductToCart: (productId: number) => void
+  reduceCartProductAmount: (productId: number) => void
+  removeProductFromCart: (id: number) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -25,15 +32,72 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const { cart } = cartState
 
-  const addProductToCart = async (id: number) => {
-    const product = await api.get(`products/${id}`)
-    dispatch(addCartProductAction(product.data))
-  }
-
   console.log(cart)
 
+  const addProductToCart = async (productId: number) => {
+    try {
+      const productStock = await api.get(`stock/${productId}`)
+      const productAlreadyInCart = await cart.find(
+        (product) => product.id === productId,
+      )
+
+      if (productAlreadyInCart) {
+        if (productAlreadyInCart.amount + 1 > productStock.data.amount) {
+          toast.error('Quantidade solicitada fora de estoque')
+          return
+        } else {
+          dispatch(
+            updateCartProductAmountAction(
+              productId,
+              productAlreadyInCart.amount + 1,
+            ),
+          )
+        }
+      } else {
+        const product = await api.get(`products/${productId}`)
+        dispatch(addCartProductAction(product.data))
+      }
+    } catch {
+      toast.error('Erro na adição do produto')
+    }
+  }
+
+  const reduceCartProductAmount = async (productId: number) => {
+    try {
+      const productAlreadyInCart = await cart.find(
+        (product) => product.id === productId,
+      )
+
+      if (productAlreadyInCart) {
+        if (productAlreadyInCart.amount - 1 <= 0) {
+          dispatch(removeCartProductAction(productId))
+        } else {
+          dispatch(
+            updateCartProductAmountAction(
+              productId,
+              productAlreadyInCart.amount - 1,
+            ),
+          )
+        }
+      }
+    } catch {
+      toast.error('Erro na remoção do produto')
+    }
+  }
+
+  const removeProductFromCart = (id: number) => {
+    dispatch(removeCartProductAction(id))
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addProductToCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addProductToCart,
+        reduceCartProductAmount,
+        removeProductFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )

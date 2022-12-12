@@ -1,3 +1,11 @@
+// LIBS, HOOKS, ETC
+import { useContext } from 'react'
+// import { useFormContext } from 'react-hook-form'
+
+// COMPONENT
+import { CartContext } from '../../../../contexts/CartContext'
+import { formatPrice } from '../../../../util/format'
+
 // STYLE
 import {
   CartContainer,
@@ -10,49 +18,96 @@ import {
 import { Minus, Plus, Trash } from 'phosphor-react'
 
 export function Cart() {
+  const {
+    cart,
+    addProductToCart,
+    reduceCartProductAmount,
+    removeProductFromCart,
+  } = useContext(CartContext)
+  // const { handleSubmit } = useFormContext()
+
+  const deliveryPrice = 3.5
+
+  async function handleAddProductToCart(productId: number) {
+    addProductToCart(productId)
+  }
+
+  function handleRemoveProductFromCart(productId: number) {
+    removeProductFromCart(productId)
+  }
+
+  const cartTotalPrice = cart.reduce((totalPrice, product) => {
+    totalPrice += product.price * product.amount
+    return totalPrice
+  }, 0)
+
   return (
     <CartContainer>
-      <ProductCard>
-        <img src="/images/expresso-tradicional.png" alt="" />
-        <div>
-          <h2>Expresso Tradicional</h2>
-          <ShoppingButtons>
+      {cart.map((product) => {
+        return (
+          <ProductCard key={product.id}>
+            <img src={product.path} alt="" />
             <div>
-              <button>
-                <Minus size="14" weight="bold" />
-              </button>
-              <p>1</p>
-              <button>
-                <Plus size="14" weight="bold" />
-              </button>
+              <h2>{product.name}</h2>
+              <ShoppingButtons>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => reduceCartProductAmount(product.id)}
+                  >
+                    <Minus size="14" weight="bold" />
+                  </button>
+                  <p>{product.amount}</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleAddProductToCart(product.id)
+                    }}
+                  >
+                    <Plus size="14" weight="bold" />
+                  </button>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      handleRemoveProductFromCart(product.id)
+                    }}
+                  >
+                    <Trash size="14" />
+                    <label>REMOVER</label>
+                  </button>
+                </div>
+              </ShoppingButtons>
             </div>
-            <div>
-              <button>
-                <Trash size="14" />
-              </button>
-              <p>REMOVER</p>
-            </div>
-          </ShoppingButtons>
-        </div>
-        <p>R$ 6,66</p>
-      </ProductCard>
+            <p>{formatPrice(product.price * product.amount)}</p>
+          </ProductCard>
+        )
+      })}
+
       <OrderConfirmationTab>
         <div>
           <span>
             <p>Total de itens</p>
-            <p>R$ 6,66</p>
+            <p>{formatPrice(cartTotalPrice)}</p>
           </span>
           <span>
             <p>Entrega</p>
-            <p>R$ 3,33</p>
+            <p>{formatPrice(deliveryPrice)}</p>
           </span>
           <span>
             <p>Total</p>
-            <p>R$ 9,99</p>
+            <p>{formatPrice(cartTotalPrice + deliveryPrice)}</p>
           </span>
         </div>
 
-        <input type="submit" value="CONFIRMAR PEDIDO" />
+        <input
+          type="submit"
+          // value="CONFIRMAR PEDIDO"
+          // onClick={() => {
+          //   handleSubmit((data) => console.log(data))
+          // }}
+        />
       </OrderConfirmationTab>
     </CartContainer>
   )
