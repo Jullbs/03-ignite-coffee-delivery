@@ -37,16 +37,28 @@ export function CheckoutForm() {
           <p>Informe o endereço onde deseja receber seu pedido.</p>
         </span>
         <div>
-          <CepInput id="cep" placeholder="CEP" {...register('cep')} />
-          <StreetInput id="street" placeholder="Rua" {...register('street')} />
+          <CepInput
+            id="cep"
+            type="number"
+            placeholder="CEP"
+            {...register('cep', { required: true })}
+          />
+          <StreetInput
+            id="street"
+            type="string"
+            placeholder="Rua"
+            {...register('street', { required: true })}
+          />
           <div>
             <NumberInput
               id="number"
+              type="number"
               placeholder="Número"
-              {...register('number')}
+              {...register('number', { required: true })}
             />
             <ComplementInput
               id="complement"
+              type="string"
               placeholder="Complemento"
               {...register('complement')}
             />
@@ -54,11 +66,22 @@ export function CheckoutForm() {
           <div>
             <DistrictInput
               id="district"
+              type="string"
               placeholder="Bairro"
-              {...register('district')}
+              {...register('district', { required: true })}
             />
-            <CityInput id="city" placeholder="Cidade" {...register('city')} />
-            <StateInput id="state" placeholder="UF" {...register('state')} />
+            <CityInput
+              id="city"
+              type="string"
+              placeholder="Cidade"
+              {...register('city', { required: true })}
+            />
+            <StateInput
+              id="state"
+              type="string"
+              placeholder="UF"
+              {...register('state', { required: true })}
+            />
           </div>
         </div>
       </AdressDiv>
@@ -77,7 +100,7 @@ export function CheckoutForm() {
               type="radio"
               id="credit-card"
               value="CARTÃO DE CRÉDITO"
-              {...register('payment-method')}
+              {...register('payment', { required: true })}
             />
             <label htmlFor="credit-card">
               <CreditCard size="16" /> CARTÃO DE CRÉDITO
@@ -88,7 +111,7 @@ export function CheckoutForm() {
               type="radio"
               id="debit-card"
               value="CARTÃO DE DÉBITO"
-              {...register('payment-method')}
+              {...register('payment', { required: true })}
             />
             <label htmlFor="debit-card">
               <Bank size="16" /> CARTÃO DE DÉBITO
@@ -99,7 +122,7 @@ export function CheckoutForm() {
               type="radio"
               id="cash"
               value="DINHEIRO"
-              {...register('payment-method')}
+              {...register('payment', { required: true })}
             />
             <label htmlFor="cash">
               <Money size="16" /> DINHEIRO

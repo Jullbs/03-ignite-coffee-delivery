@@ -1,6 +1,5 @@
 // LIBS, HOOKS, ETC
 import { useContext } from 'react'
-// import { useFormContext } from 'react-hook-form'
 
 // COMPONENT
 import { CartContext } from '../../../../contexts/CartContext'
@@ -24,7 +23,6 @@ export function Cart() {
     reduceCartProductAmount,
     removeProductFromCart,
   } = useContext(CartContext)
-  // const { handleSubmit } = useFormContext()
 
   const deliveryPrice = 3.5
 
@@ -40,6 +38,8 @@ export function Cart() {
     totalPrice += product.price * product.amount
     return totalPrice
   }, 0)
+
+  const isSubmitDisabled = cart.length <= 0
 
   return (
     <CartContainer>
@@ -103,10 +103,8 @@ export function Cart() {
 
         <input
           type="submit"
-          // value="CONFIRMAR PEDIDO"
-          // onClick={() => {
-          //   handleSubmit((data) => console.log(data))
-          // }}
+          value="CONFIRMAR PEDIDO"
+          disabled={isSubmitDisabled}
         />
       </OrderConfirmationTab>
     </CartContainer>

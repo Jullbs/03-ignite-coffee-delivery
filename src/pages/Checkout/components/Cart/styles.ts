@@ -89,18 +89,18 @@ export const ShoppingButtons = styled.div`
   }
 
   > div:last-child {
-    padding: 0.5625rem 0.5rem;
-
-    transition: background-color 0.5s;
-
-    :hover {
-      cursor: pointer;
-      background: ${(props) => props.theme['gray-500']};
-    }
-
     > button {
       display: flex;
       gap: 0.25rem;
+      padding: 0.5625rem 0.5rem;
+      border-radius: 6px;
+
+      transition: background-color 0.5s;
+
+      :hover {
+        cursor: pointer;
+        background: ${(props) => props.theme['gray-500']};
+      }
 
       > label {
         font-size: 0.75rem;
@@ -157,6 +157,11 @@ export const OrderConfirmationTab = styled.div`
     :hover {
       cursor: pointer;
       background: ${(props) => props.theme['yellow-500']};
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
   }
 `

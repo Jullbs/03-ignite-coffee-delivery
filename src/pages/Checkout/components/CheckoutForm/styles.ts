@@ -75,6 +75,22 @@ const BaseInput = styled.input`
 
   background-color: ${(props) => props.theme['gray-300']};
   border: 1px solid ${(props) => props.theme['gray-400']};
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+
+  :focus {
+    outline: 1px solid ${(props) => props.theme['yellow-500']};
+  }
+
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
 `
 
 export const CepInput = styled(BaseInput)`

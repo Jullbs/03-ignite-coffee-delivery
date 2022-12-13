@@ -32,8 +32,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const { cart } = cartState
 
-  console.log(cart)
-
   const addProductToCart = async (productId: number) => {
     try {
       const productStock = await api.get(`stock/${productId}`)
