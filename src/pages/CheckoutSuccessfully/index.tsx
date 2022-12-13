@@ -1,5 +1,7 @@
+// STYLE
 import { CheckoutSuccessfullyContainer, OrderInfoTab } from './styles'
 
+// ICONS, IMAGES
 import deliveryIllustration from '../../assets/image/delivery-illustration.png'
 import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 
@@ -16,7 +18,7 @@ export function CheckoutSuccessfully() {
             <div>
               <MapPin size="32" weight="fill" />
               <span>
-                <p>Entrega em Rua João Daniel Martinelli, 102</p>
+                <p>Entrega em Rua João Daniel Martinelli , 102</p>
                 <p>Farrapos - Porto Alegre, RS</p>
               </span>
             </div>

@@ -27,22 +27,23 @@ const newCheckoutFormValidationSchema = zod.object({
   street: zod.string(),
 })
 
-type NewCheckoutFormData = zod.infer<typeof newCheckoutFormValidationSchema>
+export type NewCheckoutFormData = zod.infer<
+  typeof newCheckoutFormValidationSchema
+>
 
 export function Checkout() {
   const newCheckoutForm = useForm<NewCheckoutFormData>({
     resolver: zodResolver(newCheckoutFormValidationSchema),
   })
 
-  const { reset, handleSubmit, formState } = newCheckoutForm
+  const { reset, handleSubmit } = newCheckoutForm
 
   function handleCreateNewCheckoutForm(data: NewCheckoutFormData) {
     console.log(data)
 
     reset()
+    window.location.replace('http://127.0.0.1:5173/checkoutsuccessfully')
   }
-
-  console.log(formState.errors)
 
   return (
     <CheckoutContainer>

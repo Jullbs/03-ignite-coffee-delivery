@@ -1,5 +1,5 @@
 // LIBS, HOOKS, ETC
-import { createContext, ReactNode, useReducer } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { api } from '../services/api'
 import { toast } from 'react-toastify'
 
@@ -26,10 +26,25 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartState, dispatch] = useReducer(cartReducer, {
-    cart: [],
-  })
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    {
+      cart: [],
+    },
+    () => {
+      const storedCartStateAsJSON = localStorage.getItem(
+        '@ignite-coffee-delivery:cart-state',
+      )
 
+      if (storedCartStateAsJSON) {
+        return JSON.parse(storedCartStateAsJSON)
+      }
+
+      return {
+        cart: [],
+      }
+    },
+  )
   const { cart } = cartState
 
   const addProductToCart = async (productId: number) => {
@@ -86,6 +101,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const removeProductFromCart = (id: number) => {
     dispatch(removeCartProductAction(id))
   }
+
+  useEffect(() => {
+    const cartStateJSON = JSON.stringify(cartState)
+
+    localStorage.setItem('@ignite-coffee-delivery:cart-state', cartStateJSON)
+  }, [cartState])
 
   return (
     <CartContext.Provider
