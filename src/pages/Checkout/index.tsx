@@ -2,18 +2,21 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 
 // COMPONENTS
 import { Cart } from './components/Cart'
 import { CheckoutForm } from './components/CheckoutForm'
+import { CartContext } from '../../contexts/CartContext'
 
 // STYLE
 import { CheckoutContainer } from './styles'
 
 const paymentMethods = [
-  'CARTÃO DE CRÉDITO',
-  'CARTÃO DE DÉBITO',
-  'DINHEIRO',
+  'Cartão de Crédito',
+  'Cartão de Débito',
+  'Dinheiro',
 ] as const
 
 const newCheckoutFormValidationSchema = zod.object({
@@ -37,12 +40,16 @@ export function Checkout() {
   })
 
   const { reset, handleSubmit } = newCheckoutForm
+  const { updateCheckoutData, resetCartProducts } = useContext(CartContext)
+
+  const navigate = useNavigate()
 
   function handleCreateNewCheckoutForm(data: NewCheckoutFormData) {
-    console.log(data)
+    updateCheckoutData(data)
+    resetCartProducts()
 
     reset()
-    window.location.replace('http://127.0.0.1:5173/checkoutsuccessfully')
+    navigate('/checkoutsuccessfully')
   }
 
   return (

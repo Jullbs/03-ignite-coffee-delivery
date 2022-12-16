@@ -21,7 +21,7 @@ export function cartReducer(state: CartState, action: any) {
   switch (action.type) {
     case ActionTypes.ADD_CART_PRODUCT:
       return produce(state, (draft) => {
-        draft.cart.push({ ...action.payload.product, amount: 1 })
+        draft.cart.push({ ...action.payload.product })
       })
 
     case ActionTypes.UPDATE_CART_PRODUCT_AMOUNT:
@@ -41,6 +41,12 @@ export function cartReducer(state: CartState, action: any) {
           (product) => product.id !== action.payload.id,
         )
       })
+
+    case ActionTypes.RESET_CART_PRODUCTS:
+      return produce(state, (draft) => {
+        draft.cart = []
+      })
+
     default:
       return state
   }

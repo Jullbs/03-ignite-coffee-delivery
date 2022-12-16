@@ -99,7 +99,7 @@ export function CheckoutForm() {
             <input
               type="radio"
               id="credit-card"
-              value="CARTÃO DE CRÉDITO"
+              value="Cartão de Crédito"
               {...register('payment', { required: true })}
             />
             <label htmlFor="credit-card">
@@ -110,7 +110,7 @@ export function CheckoutForm() {
             <input
               type="radio"
               id="debit-card"
-              value="CARTÃO DE DÉBITO"
+              value="Cartão de Débito"
               {...register('payment', { required: true })}
             />
             <label htmlFor="debit-card">
@@ -121,7 +121,7 @@ export function CheckoutForm() {
             <input
               type="radio"
               id="cash"
-              value="DINHEIRO"
+              value="Dinheiro"
               {...register('payment', { required: true })}
             />
             <label htmlFor="cash">

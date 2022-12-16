@@ -58,6 +58,16 @@ export const OrderInfoTab = styled.div`
 
       line-height: 130%;
 
+      > span {
+        > div {
+          display: flex;
+        }
+
+        .bold {
+          font-weight: 700;
+        }
+      }
+
       > svg {
         padding: 0.5rem;
         border-radius: 2rem;

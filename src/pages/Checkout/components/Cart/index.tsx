@@ -26,8 +26,8 @@ export function Cart() {
 
   const deliveryPrice = 3.5
 
-  async function handleAddProductToCart(productId: number) {
-    addProductToCart(productId)
+  async function handleAddProductToCart(productId: number, amount: number) {
+    addProductToCart(productId, amount)
   }
 
   function handleRemoveProductFromCart(productId: number) {
@@ -61,7 +61,7 @@ export function Cart() {
                   <button
                     type="button"
                     onClick={() => {
-                      handleAddProductToCart(product.id)
+                      handleAddProductToCart(product.id, 1)
                     }}
                   >
                     <Plus size="14" weight="bold" />
