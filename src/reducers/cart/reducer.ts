@@ -5,11 +5,6 @@ import { ActionTypes } from './actions'
 
 export interface CartProduct {
   id: number
-  name: string
-  tags: string[]
-  description: string
-  price: number
-  path: string
   amount: number
 }
 

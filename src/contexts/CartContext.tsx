@@ -99,8 +99,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
           )
         }
       } else {
-        const product = await api.get(`products/${productId}`)
-        dispatch(addCartProductAction({ ...product.data, amount }))
+        dispatch(addCartProductAction({ id: productId, amount }))
       }
     } catch {
       toast.error('Erro na adição do produto')

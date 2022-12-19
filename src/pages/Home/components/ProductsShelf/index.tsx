@@ -123,6 +123,7 @@ export function ProductsShelf() {
     const productsToAdd = productsAmountToAdd.find(
       (product) => product.id === productId,
     )
+
     if (productsToAdd) {
       const { id, amount } = productsToAdd
       addProductToCart(id, amount)

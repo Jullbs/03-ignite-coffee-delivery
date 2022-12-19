@@ -24,6 +24,7 @@ export function Cart() {
     reduceCartProductAmount,
     removeProductFromCart,
   } = useContext(CartContext)
+  const [cartProductsData, setCartProductsData] = useState<any[]>([])
   const [cartTotalPrice, setCartTotalPrice] = useState(0)
   const deliveryPrice = 3.5
 
@@ -36,16 +37,11 @@ export function Cart() {
   }
 
   useEffect(() => {
-    async function getCartProductsTotalPrice() {
+    async function getCartProductsDataAndTotalPrice() {
       const cartData = await Promise.all(
         cart.map(async (product) => {
           const productData = await api.get(`products/${product.id}`)
-
-          return {
-            id: product.id,
-            price: productData.data.price,
-            amount: product.amount,
-          }
+          return { ...productData.data, amount: product.amount }
         }),
       )
 
@@ -54,17 +50,18 @@ export function Cart() {
         return totalPrice
       }, 0)
 
+      setCartProductsData(cartData)
       setCartTotalPrice(cartTotal)
     }
 
-    getCartProductsTotalPrice()
+    getCartProductsDataAndTotalPrice()
   }, [cart])
 
   const isSubmitDisabled = cart.length <= 0
 
   return (
     <CartContainer>
-      {cart.map((product) => {
+      {cartProductsData.map((product) => {
         return (
           <ProductCard key={product.id}>
             <img src={product.path} alt="" />
