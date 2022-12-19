@@ -107,7 +107,11 @@ export function ProductsShelf() {
             case 'increment':
               return { ...product, amount: (product.amount += 1) }
             case 'decrement':
-              return { ...product, amount: (product.amount -= 1) }
+              if (product.amount === 0) {
+                break
+              } else {
+                return { ...product, amount: (product.amount -= 1) }
+              }
           }
         }
         return { ...product }

@@ -1,5 +1,6 @@
 // LIBS, HOOKS, ETC
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { api } from '../../../../services/api'
 
 // COMPONENT
 import { CartContext } from '../../../../contexts/CartContext'
@@ -23,7 +24,7 @@ export function Cart() {
     reduceCartProductAmount,
     removeProductFromCart,
   } = useContext(CartContext)
-
+  const [cartTotalPrice, setCartTotalPrice] = useState(0)
   const deliveryPrice = 3.5
 
   async function handleAddProductToCart(productId: number, amount: number) {
@@ -34,10 +35,30 @@ export function Cart() {
     removeProductFromCart(productId)
   }
 
-  const cartTotalPrice = cart.reduce((totalPrice, product) => {
-    totalPrice += product.price * product.amount
-    return totalPrice
-  }, 0)
+  useEffect(() => {
+    async function getCartProductsTotalPrice() {
+      const cartData = await Promise.all(
+        cart.map(async (product) => {
+          const productData = await api.get(`products/${product.id}`)
+
+          return {
+            id: product.id,
+            price: productData.data.price,
+            amount: product.amount,
+          }
+        }),
+      )
+
+      const cartTotal = cartData.reduce((totalPrice, product) => {
+        totalPrice += product.price * product.amount
+        return totalPrice
+      }, 0)
+
+      setCartTotalPrice(cartTotal)
+    }
+
+    getCartProductsTotalPrice()
+  }, [cart])
 
   const isSubmitDisabled = cart.length <= 0
 
