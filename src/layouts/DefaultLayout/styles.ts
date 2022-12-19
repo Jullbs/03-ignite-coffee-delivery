@@ -9,4 +9,9 @@ export const LayoutContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 90rem) {
+    margin: 0;
+    width: 100vw;
+  }
 `

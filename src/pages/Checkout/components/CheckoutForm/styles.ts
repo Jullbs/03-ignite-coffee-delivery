@@ -11,6 +11,11 @@ export const CheckoutFormContainer = styled.div`
     flex-direction: column;
     gap: 0.75rem;
   }
+
+  @media screen and (max-width: 90rem) {
+    width: 100vw;
+    flex-shrink: 1;
+  }
 `
 const BaseDiv = styled.div`
   background: ${(props) => props.theme['gray-200']};
@@ -65,6 +70,11 @@ export const AdressDiv = styled(BaseDiv)`
     > div {
       display: flex;
       gap: 0.75rem;
+
+      @media screen and (max-width: 90rem) {
+        flex-wrap: wrap;
+        flex-shrink: 1;
+      }
     }
   }
 `
@@ -91,6 +101,10 @@ const BaseInput = styled.input`
   input[type='number'] {
     -moz-appearance: textfield;
   }
+
+  @media screen and (max-width: 90rem) {
+    flex-shrink: 1;
+  }
 `
 
 export const CepInput = styled(BaseInput)`
@@ -98,7 +112,7 @@ export const CepInput = styled(BaseInput)`
 `
 
 export const StreetInput = styled(BaseInput)`
-  width: 35rem;
+  max-width: 35rem;
 `
 
 export const NumberInput = styled(BaseInput)`
@@ -176,6 +190,11 @@ export const PaymentDiv = styled(BaseDiv)`
           cursor: pointer;
         }
       }
+    }
+
+    @media screen and (max-width: 90rem) {
+      flex-wrap: wrap;
+      flex-shrink: 1;
     }
   }
 `

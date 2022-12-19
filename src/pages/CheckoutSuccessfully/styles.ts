@@ -26,6 +26,10 @@ export const CheckoutSuccessfullyContainer = styled.main`
     align-items: center;
     padding-top: 1.75rem;
     gap: 6.375rem;
+
+    @media screen and (max-width: 90rem) {
+      flex-wrap: wrap;
+    }
   }
 `
 

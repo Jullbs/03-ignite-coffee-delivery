@@ -72,4 +72,10 @@ export const HeaderContainer = styled.nav`
       }
     }
   }
+
+  @media screen and (max-width: 50rem) {
+    width: 100vw;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
 `

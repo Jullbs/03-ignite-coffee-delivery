@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CheckoutContainer = styled.main`
   > form {
     display: flex;
-    padding: 2.3rem 10rem;
+    margin: 2.3rem 10rem;
     gap: 2rem;
 
     > div {
@@ -14,6 +14,14 @@ export const CheckoutContainer = styled.main`
         color: ${(props) => props.theme['gray-1000']};
         font-size: 1.125rem;
       }
+    }
+
+    @media screen and (max-width: 90rem) {
+      flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 50rem) {
+      margin: 2.3rem auto;
     }
   }
 `

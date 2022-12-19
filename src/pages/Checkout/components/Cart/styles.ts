@@ -9,6 +9,11 @@ export const CartContainer = styled.div`
   font-family: 'Roboto', sans-serif;
   color: ${(props) => props.theme['gray-1000']};
   background: ${(props) => props.theme['gray-200']};
+
+  @media screen and (max-width: 50rem) {
+    width: 100vw;
+    padding: auto;
+  }
 `
 
 export const ProductCard = styled.div`
@@ -34,6 +39,10 @@ export const ProductCard = styled.div`
     h2 {
       font-size: 1rem;
       font-weight: 400;
+    }
+
+    @media screen and (max-width: 90rem) {
+      margin: 0;
     }
   }
 

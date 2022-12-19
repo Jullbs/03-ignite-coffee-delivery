@@ -5,7 +5,7 @@ export const DescriptionContainer = styled.div`
   z-index: 10;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 10rem;
+  margin: 0 10rem;
 
   font-family: 'Roboto', sans-serif;
 
@@ -15,8 +15,8 @@ export const DescriptionContainer = styled.div`
     max-width: 40.25rem;
 
     gap: 4.125rem;
-    padding-top: 5.875rem;
-    padding-bottom: 6.75rem;
+    margin-top: 5.875rem;
+    margin-bottom: 6.75rem;
   }
 
   ul {
@@ -26,7 +26,7 @@ export const DescriptionContainer = styled.div`
     column-gap: 2.3rem;
     row-gap: 1.25rem;
 
-    padding-right: 4.8125rem;
+    margin-right: 4.8125rem;
 
     li {
       display: flex;
@@ -68,7 +68,7 @@ export const DescriptionContainer = styled.div`
   }
 
   img {
-    padding: 5.75rem 0;
+    margin: 5.75rem 0;
     max-width: 100%;
     height: auto;
   }
@@ -78,7 +78,7 @@ export const IntroContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-right: 3.5rem;
+  margin-right: 3.5rem;
 
   h1 {
     font-family: 'Baloo 2', cursive;

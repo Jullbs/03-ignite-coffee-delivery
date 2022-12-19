@@ -17,6 +17,16 @@ import {
 // ICONS, IMAGES
 import { Minus, Plus, Trash } from 'phosphor-react'
 
+interface ProductsData {
+  id: number
+  name: string
+  tag: string[]
+  description: string
+  price: number
+  path: string
+  amount: number
+}
+
 export function Cart() {
   const {
     cart,
@@ -24,9 +34,7 @@ export function Cart() {
     reduceCartProductAmount,
     removeProductFromCart,
   } = useContext(CartContext)
-  const [cartProductsData, setCartProductsData] = useState<any[]>([])
-  const [cartTotalPrice, setCartTotalPrice] = useState(0)
-  const deliveryPrice = 3.5
+  const [cartProductsData, setCartProductsData] = useState<ProductsData[]>([])
 
   async function handleAddProductToCart(productId: number, amount: number) {
     addProductToCart(productId, amount)
@@ -37,7 +45,7 @@ export function Cart() {
   }
 
   useEffect(() => {
-    async function getCartProductsDataAndTotalPrice() {
+    async function getCartProductsData() {
       const cartData = await Promise.all(
         cart.map(async (product) => {
           const productData = await api.get(`products/${product.id}`)
@@ -45,17 +53,17 @@ export function Cart() {
         }),
       )
 
-      const cartTotal = cartData.reduce((totalPrice, product) => {
-        totalPrice += product.price * product.amount
-        return totalPrice
-      }, 0)
-
       setCartProductsData(cartData)
-      setCartTotalPrice(cartTotal)
     }
 
-    getCartProductsDataAndTotalPrice()
+    getCartProductsData()
   }, [cart])
+
+  const deliveryPrice = 3.5
+  const cartTotalPrice = cartProductsData.reduce((totalPrice, product) => {
+    totalPrice += product.price * product.amount
+    return totalPrice
+  }, 0)
 
   const isSubmitDisabled = cart.length <= 0
 
