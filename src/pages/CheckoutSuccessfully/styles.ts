@@ -4,7 +4,7 @@ export const CheckoutSuccessfullyContainer = styled.main`
   display: flex;
   flex-direction: column;
 
-  padding: 5rem 10rem;
+  margin: 5rem 10rem;
 
   font-family: 'Roboto', sans-serif;
 
@@ -27,9 +27,18 @@ export const CheckoutSuccessfullyContainer = styled.main`
     padding-top: 1.75rem;
     gap: 6.375rem;
 
+    > img {
+      max-width: 100%;
+      height: auto;
+    }
+
     @media screen and (max-width: 90rem) {
       flex-wrap: wrap;
     }
+  }
+
+  @media screen and (max-width: 50rem) {
+    margin: auto;
   }
 `
 
@@ -65,6 +74,10 @@ export const OrderInfoTab = styled.div`
       > span {
         > div {
           display: flex;
+
+          @media screen and (max-width: 50rem) {
+            flex-direction: column;
+          }
         }
 
         .bold {
@@ -96,6 +109,14 @@ export const OrderInfoTab = styled.div`
           background-color: ${(props) => props.theme['yellow-500']};
         }
       }
+    }
+
+    @media screen and (max-width: 50rem) {
+      width: 30rem;
+    }
+
+    @media screen and (max-width: 35rem) {
+      width: 100%;
     }
   }
 `

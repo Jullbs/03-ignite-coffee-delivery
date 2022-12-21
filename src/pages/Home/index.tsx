@@ -16,7 +16,6 @@ export function Home() {
       <DescriptionDisplay />
 
       <ProductsShelf />
-      {/* <img src="/images/arabe.png" alt="" /> */}
     </HomeContainer>
   )
 }

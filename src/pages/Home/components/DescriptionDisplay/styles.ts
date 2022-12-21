@@ -72,6 +72,10 @@ export const DescriptionContainer = styled.div`
     max-width: 100%;
     height: auto;
   }
+
+  @media screen and (max-width: 50rem) {
+    margin: auto;
+  }
 `
 
 export const IntroContent = styled.div`

@@ -13,6 +13,10 @@ export const ProductsShelfContainer = styled.div`
     font-weight: 800;
     color: ${(props) => props.theme['gray-1000']};
   }
+
+  @media screen and (max-width: 50rem) {
+    margin: 4rem;
+  }
 `
 
 export const ItemContainer = styled.ul`
