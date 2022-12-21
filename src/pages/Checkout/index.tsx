@@ -21,26 +21,35 @@ const paymentMethods = [
 ] as const
 
 const newCheckoutFormValidationSchema = zod.object({
-  cep: zod.string().length(8),
+  cep: zod.string().length(8, 'Must contain 8 numbers'),
   city: zod
     .string()
-    .refine((value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' })),
-  complement: zod
-    .string()
-    .refine((value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' }))
-    .optional(),
+    .refine(
+      (value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' }),
+      'Must contain only letters',
+    ),
+  complement: zod.string(),
   district: zod
     .string()
-    .refine((value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' })),
+    .refine(
+      (value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' }),
+      'Must contain only letters',
+    ),
   number: zod.string().min(1).max(3),
   payment: zod.enum(paymentMethods),
   state: zod
     .string()
-    .length(2)
-    .refine((value) => validator.isAlpha(value, 'pt-BR')),
+    .length(2, 'Must contain only 2 letters')
+    .refine(
+      (value) => validator.isAlpha(value, 'pt-BR'),
+      'Must contain only letters',
+    ),
   street: zod
     .string()
-    .refine((value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' })),
+    .refine(
+      (value) => validator.isAlpha(value, 'pt-BR', { ignore: ' ' }),
+      'Must contain only letters',
+    ),
 })
 
 export type NewCheckoutFormData = zod.infer<

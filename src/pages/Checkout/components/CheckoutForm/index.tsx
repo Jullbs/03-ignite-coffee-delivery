@@ -56,12 +56,15 @@ export function CheckoutForm() {
               placeholder="Número"
               {...register('number', { required: true })}
             />
-            <ComplementInput
-              id="complement"
-              type="string"
-              placeholder="Complemento"
-              {...register('complement')}
-            />
+            <div>
+              <ComplementInput
+                id="complement"
+                type="string"
+                placeholder="Complemento"
+                {...register('complement')}
+              />
+              <span>Opcional</span>
+            </div>
           </div>
           <div>
             <DistrictInput

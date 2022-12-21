@@ -75,6 +75,19 @@ export const AdressDiv = styled(BaseDiv)`
         flex-wrap: wrap;
         flex-shrink: 1;
       }
+
+      > div {
+        > span {
+          position: absolute;
+          margin-left: -3.75rem;
+          margin-top: 0.9rem;
+
+          font-family: 'Roboto', sans-serif;
+          font-size: 0.75rem;
+          font-style: italic;
+          color: ${(props) => props.theme['gray-800']};
+        }
+      }
     }
   }
 `
@@ -121,6 +134,18 @@ export const NumberInput = styled(BaseInput)`
 
 export const ComplementInput = styled(BaseInput)`
   width: 21.75rem;
+
+  :focus {
+    + span {
+      display: none;
+    }
+  }
+
+  :not(:placeholder-shown) {
+    + span {
+      display: none;
+    }
+  }
 `
 
 export const DistrictInput = styled(BaseInput)`

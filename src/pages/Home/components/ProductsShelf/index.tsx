@@ -105,9 +105,13 @@ export function ProductsShelf() {
         if (product.id === id) {
           switch (action) {
             case 'increment':
-              return { ...product, amount: (product.amount += 1) }
+              if (product.amount === 35) {
+                break
+              } else {
+                return { ...product, amount: (product.amount += 1) }
+              }
             case 'decrement':
-              if (product.amount === 0) {
+              if (product.amount === 1) {
                 break
               } else {
                 return { ...product, amount: (product.amount -= 1) }

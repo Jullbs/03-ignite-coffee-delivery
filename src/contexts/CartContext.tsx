@@ -99,7 +99,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
           )
         }
       } else {
-        dispatch(addCartProductAction({ id: productId, amount }))
+        if (amount > productStock.data.amount) {
+          toast.error('Quantidade solicitada fora de estoque')
+          return
+        } else {
+          dispatch(addCartProductAction({ id: productId, amount }))
+        }
       }
     } catch {
       toast.error('Erro na adição do produto')

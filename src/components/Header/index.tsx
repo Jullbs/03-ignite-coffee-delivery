@@ -13,29 +13,7 @@ import logoCoffee from '../../assets/svg/logo-coffee-delivery.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
 
 export function Header() {
-  // PRECISA DE KEY PARA ACESSAR A API DO GOOGLE
-  // const [userLocation, setUSerLocation] = useState('Porto Alegre, RS')
 
-  // useEffect(() => {
-  //   async function getLocation() {
-  //     await navigator.geolocation.getCurrentPosition(function (position) {
-  //       Geocode.fromLatLng(
-  //         position.coords.latitude.toString(),
-  //         position.coords.longitude.toString(),
-  //       ).then(
-  //         (response) => {
-  //           const address = response.results[0].formatted_address
-  //           console.log(address)
-  //         },
-  //         (error) => {
-  //           console.error(error)
-  //         },
-  //       )
-  //     })
-  //   }
-
-  //   getLocation()
-  // }, [])
   const { cart } = useContext(CartContext)
 
   const amountOfProductsInCart = cart.length
